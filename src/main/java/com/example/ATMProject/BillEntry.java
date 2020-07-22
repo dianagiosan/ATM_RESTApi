@@ -6,11 +6,11 @@ import java.util.Objects;
  * this class models a bill entry, which is basically a pair between the bill and
  * the amount of such bills that are available in the ATM
  */
-public class billEntry {
+public class BillEntry {
 	private int billValue;
 	private int billAmount;
 	
-	public billEntry(int billValue, int billAmount) {
+	public BillEntry(int billValue, int billAmount) {
 		this.billAmount = billAmount;
 		this.billValue = billValue;
 	}
@@ -39,9 +39,9 @@ public class billEntry {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		billEntry billEntry = (billEntry) o;
-		return billValue == billEntry.billValue &&
-			billAmount == billEntry.billAmount;
+		BillEntry BillEntry = (BillEntry) o;
+		return billValue == BillEntry.billValue &&
+			billAmount == BillEntry.billAmount;
 	}
 	
 	@Override

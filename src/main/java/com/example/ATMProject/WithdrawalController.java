@@ -13,8 +13,9 @@ public class WithdrawalController {
 	
 	@GetMapping("/api/new-transaction")
 	public String transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) {
-		if (ATMinstance.splitIntoBills(cashToWithdraw).message.equals("Transaction approved"))
-			return ATMinstance.splitIntoBills(cashToWithdraw).toString();
+		ATMOutput attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);
+		if (attemptOutput.message.equals("Transaction approved"))
+			return attemptOutput.toString();
 		else return myClient.transaction(cashToWithdraw);
 	}
 	

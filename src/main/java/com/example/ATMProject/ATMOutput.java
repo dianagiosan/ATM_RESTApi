@@ -9,15 +9,15 @@ import java.util.List;
  */
 
 public class ATMOutput {
-	java.util.List<billEntry> bills;
+	java.util.List<BillEntry> bills;
 	String message;
 	
-	public ATMOutput(java.util.List<billEntry> bills, String message) {
+	public ATMOutput(java.util.List<BillEntry> bills, String message) {
 		this.bills = bills;
 		this.message = message;
 	}
 	
-	public List<billEntry> getBills() {
+	public List<BillEntry> getBills() {
 		return bills;
 	}
 	

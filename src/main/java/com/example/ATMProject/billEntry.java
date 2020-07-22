@@ -23,6 +23,10 @@ public class billEntry {
 		return billValue;
 	}
 	
+	public void setBillAmount(int billAmount) {
+		this.billAmount = billAmount;
+	}
+	
 	public void decreaseAmount() {
 		billAmount--;
 	}

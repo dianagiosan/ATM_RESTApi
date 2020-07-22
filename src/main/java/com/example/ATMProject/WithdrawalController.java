@@ -18,9 +18,4 @@ public class WithdrawalController {
 		else return myClient.transaction(cashToWithdraw);
 	}
 	
-	@GetMapping("/")
-	public String HelloMessage() {
-		return "Hello! Transfer some money.";
-		
-	}
 }

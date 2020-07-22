@@ -33,15 +33,17 @@ public class ATMServiceImpl implements ATMService {
 		
 	}
 	
-	/**
-	 * for testing purposes only
-	 */
-	public void changeInitialATMConfiguration(java.util.List<billEntry> newConfiguration) {
-		availableBills.clear();
-		availableBills.addAll(newConfiguration);
-		
+	public List<billEntry> getAvailableBills() {
+		return availableBills;
 	}
 	
+	public void ATMRefill(int billValue, int billAmount){
+		for(billEntry b : availableBills) {
+			if (b.getBillValue() == billValue)
+				b.setBillAmount(b.getBillAmount() + billAmount);
+		}
+		
+	}
 	/**
 	 * method that splits the desired sum of money into corresponding bills
 	 *

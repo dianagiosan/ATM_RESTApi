@@ -19,26 +19,26 @@ public class ATMServiceImpl implements ATMService {
 	/**
 	 * the list of available bills in the ATM
 	 */
-	private java.util.List<billEntry> availableBills = new ArrayList<>();
+	private java.util.List<BillEntry> availableBills = new ArrayList<>();
 	
 	/**
 	 * initialize the available bills every time an ATM object is created
 	 */
 	public ATMServiceImpl() {
-		availableBills.add(new billEntry(100, 50));
-		availableBills.add(new billEntry(50, 50));
-		availableBills.add(new billEntry(10, 100));
-		availableBills.add(new billEntry(5, 100));
-		availableBills.add(new billEntry(1, 100));
+		availableBills.add(new BillEntry(100, 50));
+		availableBills.add(new BillEntry(50, 50));
+		availableBills.add(new BillEntry(10, 100));
+		availableBills.add(new BillEntry(5, 100));
+		availableBills.add(new BillEntry(1, 100));
 		
 	}
 	
-	public List<billEntry> getAvailableBills() {
+	public List<BillEntry> getAvailableBills() {
 		return availableBills;
 	}
 	
 	public void ATMRefill(int billValue, int billAmount){
-		for(billEntry b : availableBills) {
+		for(BillEntry b : availableBills) {
 			if (b.getBillValue() == billValue)
 				b.setBillAmount(b.getBillAmount() + billAmount);
 		}
@@ -54,7 +54,7 @@ public class ATMServiceImpl implements ATMService {
 		/*
 		  sort the list of available bills descendingly by their value
 		 */
-		availableBills.sort((billEntry1, billEntry2) -> billEntry2.getBillValue() - billEntry1.getBillValue());
+		availableBills.sort((BillEntry1, BillEntry2) -> BillEntry2.getBillValue() - BillEntry1.getBillValue());
 		
 		/*
 		  the current bill in the list that we try to include in the output
@@ -65,10 +65,10 @@ public class ATMServiceImpl implements ATMService {
 		  how many bills like the current one were we able to include so far?
 		 */
 		int currentBillCounter;
-		List<billEntry> returnBills = new ArrayList<>();
+		List<BillEntry> returnBills = new ArrayList<>();
 		String message;
 		boolean OKtoContinue = false;
-		for (billEntry entry : availableBills) {
+		for (BillEntry entry : availableBills) {
 			/* first, check to see if the ATM is not empty */
 			
 			if (entry.getBillAmount() != 0) {
@@ -84,12 +84,12 @@ public class ATMServiceImpl implements ATMService {
 			} catch (NotEnoughCashLeftException e) {
 				System.out.println(e.getMessage());
 				message = "Transaction denied : The ATM ran out of cash. Please come back later.";
-				returnBills.add(new billEntry(0, 0)); /* no money outputted */
+				returnBills.add(new BillEntry(0, 0)); /* no money outputted */
 				return new ATMOutput(returnBills, message);
 			}
-		List<billEntry> availableBillsCopy = new ArrayList<>(); /* create a working copy of the ATM bills */
-		for (billEntry entry : availableBills) {
-			billEntry entryCopy = new billEntry(entry.getBillValue(), entry.getBillAmount());
+		List<BillEntry> availableBillsCopy = new ArrayList<>(); /* create a working copy of the ATM bills */
+		for (BillEntry entry : availableBills) {
+			BillEntry entryCopy = new BillEntry(entry.getBillValue(), entry.getBillAmount());
 			availableBillsCopy.add(entryCopy);
 		}
 		/* we still have to withdraw cash */
@@ -109,7 +109,7 @@ public class ATMServiceImpl implements ATMService {
 			 * we have to add a new bill to the output, with it's corresponding amount
 			 */
 			if (currentBillCounter > 0)
-				returnBills.add(new billEntry(availableBills.get(currentBillIndex).getBillValue(), currentBillCounter));
+				returnBills.add(new BillEntry(availableBills.get(currentBillIndex).getBillValue(), currentBillCounter));
 			currentBillIndex++;
 			
 		}
@@ -122,7 +122,7 @@ public class ATMServiceImpl implements ATMService {
 			message = "Transaction denied : There are not enough bills in the ATM for the desired transaction. Try another transaction.";
 			returnBills.clear();
 			/* no money outputted */
-			returnBills.add(new billEntry(0, 0));
+			returnBills.add(new BillEntry(0, 0));
 			try {
 				/* throw exception */
 				throw new TransactionNotPossibleException();

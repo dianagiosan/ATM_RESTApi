@@ -9,5 +9,5 @@ public interface ATMService {
 	void ATMRefill(int billValue, int billAmount);
 	ATMOutput splitIntoBills(int cashToWithdraw);
 	
-	List<billEntry> getAvailableBills();
+	List<BillEntry> getAvailableBills();
 }

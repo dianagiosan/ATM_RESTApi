@@ -1,8 +1,6 @@
 package com.example.ATMProject;
 
 import com.example.ATMProject.client.ATMClient;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +16,13 @@ public class WithdrawalController {
 	ATMClient myClient;
 	
 	@GetMapping("/api/new-transaction")
-	public ATMOutput transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) throws JsonProcessingException {
+	public ResponseEntity<ATMOutput> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) {
 		/* Attempt to withdraw cash from this ATM */
-		ObjectMapper objectMapper = new ObjectMapper();
 		ATMOutput attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);
 		if (attemptOutput.message.equals("Transaction approved"))
-			return attemptOutput;
+			return new ResponseEntity<>(attemptOutput, HttpStatus.OK);
 			/* If not possible, try to withdraw from the other available ATM */
-		else return myClient.transaction(cashToWithdraw);
+		else return new ResponseEntity<>(myClient.transaction(cashToWithdraw), HttpStatus.OK);
 	}
 	
 }

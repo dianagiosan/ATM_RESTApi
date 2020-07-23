@@ -1,6 +1,5 @@
 package com.example.ATMProject;
 
-import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Test;
 

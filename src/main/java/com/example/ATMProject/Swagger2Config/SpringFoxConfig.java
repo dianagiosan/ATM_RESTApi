@@ -1,4 +1,4 @@
-package com.example.ATMProject;
+package com.example.ATMProject.Swagger2Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

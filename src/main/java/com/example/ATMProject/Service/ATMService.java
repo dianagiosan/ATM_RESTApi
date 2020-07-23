@@ -1,4 +1,7 @@
-package com.example.ATMProject;
+package com.example.ATMProject.Service;
+
+import com.example.ATMProject.ATMUtils.BillEntry;
+import com.example.ATMProject.DTO.ATMOutput;
 
 import java.util.List;
 

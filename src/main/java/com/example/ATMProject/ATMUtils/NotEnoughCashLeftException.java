@@ -1,4 +1,4 @@
-package com.example.ATMProject;
+package com.example.ATMProject.ATMUtils;
 
 /**
  * The ATM throws an exception when it completely runs out of cash

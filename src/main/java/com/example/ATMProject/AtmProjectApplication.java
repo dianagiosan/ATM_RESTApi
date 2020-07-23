@@ -1,12 +1,11 @@
 package com.example.ATMProject;
 
-import com.example.ATMProject.client.ATMClient;
+import com.example.ATMProject.FeignClient.ATMClient;
+import com.example.ATMProject.DTO.ATMOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.http.ResponseEntity;
-import springfox.documentation.spring.web.json.Json;
 
 @SpringBootApplication
 @EnableFeignClients

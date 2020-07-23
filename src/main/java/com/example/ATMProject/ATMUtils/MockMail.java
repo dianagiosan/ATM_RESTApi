@@ -1,4 +1,4 @@
-package com.example.ATMProject;
+package com.example.ATMProject.ATMUtils;
 
 /**
  * class for the mock emails sent with warnings that the ATM budget is running low

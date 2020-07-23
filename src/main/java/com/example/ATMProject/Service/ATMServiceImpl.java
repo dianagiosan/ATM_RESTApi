@@ -1,5 +1,10 @@
-package com.example.ATMProject;
+package com.example.ATMProject.Service;
 
+import com.example.ATMProject.ATMUtils.BillEntry;
+import com.example.ATMProject.ATMUtils.MockMail;
+import com.example.ATMProject.ATMUtils.NotEnoughCashLeftException;
+import com.example.ATMProject.ATMUtils.TransactionNotPossibleException;
+import com.example.ATMProject.DTO.ATMOutput;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

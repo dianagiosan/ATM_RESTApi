@@ -1,5 +1,6 @@
-package com.example.ATMProject;
+package com.example.ATMProject.Controllers;
 
+import com.example.ATMProject.Service.ATMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

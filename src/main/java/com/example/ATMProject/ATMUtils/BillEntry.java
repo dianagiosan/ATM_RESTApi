@@ -1,4 +1,4 @@
-package com.example.ATMProject;
+package com.example.ATMProject.ATMUtils;
 
 import java.util.Objects;
 

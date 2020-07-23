@@ -52,6 +52,16 @@ public class ATMServiceImpl implements ATMService {
 	}
 	
 	/**
+	 * For testing purposes only
+	 * @param newConfiguration - a list of the desired bill configuration
+	 */
+	public void changeInitialATMConfiguration(List<BillEntry> newConfiguration) {
+		availableBills.clear();
+		availableBills.addAll(newConfiguration);
+		
+	}
+	
+	/**
 	 * method that splits the desired sum of money into corresponding bills
 	 *
 	 * @param cashToWithdraw - the sum that the user desires to withdraw
@@ -90,7 +100,7 @@ public class ATMServiceImpl implements ATMService {
 				throw new NotEnoughCashLeftException();
 			} catch (NotEnoughCashLeftException e) {
 				System.out.println(e.getMessage());
-				message = "Transaction denied : The ATM ran out of cash. Please come back later.";
+				message = "Transaction denied";
 				returnBills.add(new BillEntry(0, 0)); /* no money outputted */
 				return new ATMdto(returnBills, message);
 			}
@@ -126,7 +136,7 @@ public class ATMServiceImpl implements ATMService {
 		 * bill configuration in the ATM doesn't allow it
 		 */
 		if (cashToWithdraw > 0) {
-			message = "Transaction denied : There are not enough bills in the ATM for the desired transaction. Try another transaction.";
+			message = "Transaction denied";
 			returnBills.clear();
 			/* no money outputted */
 			returnBills.add(new BillEntry(0, 0));

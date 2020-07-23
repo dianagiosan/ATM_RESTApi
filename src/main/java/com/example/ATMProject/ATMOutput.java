@@ -13,7 +13,9 @@ public class ATMOutput {
 	Map<String, Integer> bills = new TreeMap<>();
 	
 	String message;
+	public ATMOutput(){
 	
+	}
 	public ATMOutput(List<BillEntry> bills, String message) {
 		for(BillEntry entry : bills) {
 			this.bills.put(entry.billValueAsString(), entry.getBillAmount());

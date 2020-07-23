@@ -1,8 +1,8 @@
-package com.example.ATMProject.Controllers;
+package com.example.ATMProject.Presentation;
 
-import com.example.ATMProject.DTO.ATMOutput;
 import com.example.ATMProject.FeignClient.ATMClient;
-import com.example.ATMProject.Service.ATMService;
+import com.example.ATMProject.Application.DTO.ATMdto;
+import com.example.ATMProject.Application.Service.ATMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +18,9 @@ public class WithdrawalController {
 	ATMClient myClient;
 	
 	@GetMapping("/api/new-transaction")
-	public ResponseEntity<ATMOutput> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) {
+	public ResponseEntity<ATMdto> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) {
 		/* Attempt to withdraw cash from this ATM */
-		ATMOutput attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);
+		ATMdto attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);
 		if (attemptOutput.getMessage().equals("Transaction approved"))
 			return new ResponseEntity<>(attemptOutput, HttpStatus.OK);
 			/* If not possible, try to withdraw from the other available ATM */

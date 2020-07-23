@@ -1,4 +1,4 @@
-package com.example.ATMProject.ATMUtils;
+package com.example.ATMProject.Infrastructure.ATMExceptions;
 
 /**
  * the exception that is thrown when there is not enough

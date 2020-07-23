@@ -1,4 +1,4 @@
-package com.example.ATMProject.ATMUtils;
+package com.example.ATMProject.Domain;
 
 import java.util.Objects;
 

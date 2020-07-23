@@ -1,6 +1,6 @@
-package com.example.ATMProject.DTO;
+package com.example.ATMProject.Application.DTO;
 
-import com.example.ATMProject.ATMUtils.BillEntry;
+import com.example.ATMProject.Domain.BillEntry;
 
 import java.util.List;
 import java.util.Map;
@@ -12,17 +12,17 @@ import java.util.TreeMap;
  * consisting of the bills and their respective amount, as well as a specific success/error message
  */
 
-public class ATMOutput {
+public class ATMdto {
 	
 	Map<String, Integer> bills = new TreeMap<>();
 	
 	String message;
 	
-	public ATMOutput() {
+	public ATMdto() {
 	
 	}
 	
-	public ATMOutput(List<BillEntry> bills, String message) {
+	public ATMdto(List<BillEntry> bills, String message) {
 		for (BillEntry entry : bills) {
 			this.bills.put(entry.billValueAsString(), entry.getBillAmount());
 		}
@@ -41,9 +41,9 @@ public class ATMOutput {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		ATMOutput atmOutput = (ATMOutput) o;
-		return bills.equals(atmOutput.bills) &&
-			message.equals(atmOutput.message);
+		ATMdto ATMdto = (ATMdto) o;
+		return bills.equals(ATMdto.bills) &&
+			message.equals(ATMdto.message);
 	}
 	
 	@Override

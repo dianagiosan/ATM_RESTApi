@@ -1,10 +1,11 @@
-package com.example.ATMProject.Service;
+package com.example.ATMProject.Application.Service;
 
-import com.example.ATMProject.ATMUtils.BillEntry;
-import com.example.ATMProject.ATMUtils.MockMail;
-import com.example.ATMProject.ATMUtils.NotEnoughCashLeftException;
-import com.example.ATMProject.ATMUtils.TransactionNotPossibleException;
-import com.example.ATMProject.DTO.ATMOutput;
+import com.example.ATMProject.Application.DTO.ATMdto;
+import com.example.ATMProject.Application.Service.ATMService;
+import com.example.ATMProject.Domain.BillEntry;
+import com.example.ATMProject.Domain.MockMail;
+import com.example.ATMProject.Infrastructure.ATMExceptions.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.ATMExceptions.TransactionNotPossibleException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class ATMServiceImpl implements ATMService {
 	/**
 	 * the list of available bills in the ATM
 	 */
-	private java.util.List<BillEntry> availableBills = new ArrayList<>();
+	private List<BillEntry> availableBills = new ArrayList<>();
 	
 	/**
 	 * initialize the available bills every time an ATM object is created
@@ -56,7 +57,7 @@ public class ATMServiceImpl implements ATMService {
 	 * @param cashToWithdraw - the sum that the user desires to withdraw
 	 * @return ATMOutput object : list of billEntries and success/error message
 	 */
-	public ATMOutput splitIntoBills(int cashToWithdraw) {
+	public ATMdto splitIntoBills(int cashToWithdraw) {
 		/*
 		  sort the list of available bills descendingly by their value
 		 */
@@ -91,7 +92,7 @@ public class ATMServiceImpl implements ATMService {
 				System.out.println(e.getMessage());
 				message = "Transaction denied : The ATM ran out of cash. Please come back later.";
 				returnBills.add(new BillEntry(0, 0)); /* no money outputted */
-				return new ATMOutput(returnBills, message);
+				return new ATMdto(returnBills, message);
 			}
 		List<BillEntry> availableBillsCopy = new ArrayList<>(); /* create a working copy of the ATM bills */
 		for (BillEntry entry : availableBills) {
@@ -157,7 +158,7 @@ public class ATMServiceImpl implements ATMService {
 				warning50MessageSent = true;
 			}
 		}
-		return new ATMOutput(returnBills, message);
+		return new ATMdto(returnBills, message);
 	}
 	
 	

@@ -1,11 +1,11 @@
 package com.example.ATMProject;
 
-import com.example.ATMProject.DTO.ATMOutput;
 import com.example.ATMProject.FeignClient.ATMClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import com.example.ATMProject.Application.DTO.ATMdto;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -18,7 +18,7 @@ public class AtmProjectApplication {
 		SpringApplication.run(AtmProjectApplication.class, args);
 	}
 	
-	public ATMOutput transaction(int cashToWithdraw) {
+	public ATMdto transaction(int cashToWithdraw) {
 		return myClient.transaction(cashToWithdraw);
 	}
 }

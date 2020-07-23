@@ -1,4 +1,4 @@
-package com.example.ATMProject.Controllers;
+package com.example.ATMProject.Presentation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

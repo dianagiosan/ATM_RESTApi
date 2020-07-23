@@ -7,6 +7,7 @@ import java.util.Objects;
  * the amount of such bills that are available in the ATM
  */
 public class BillEntry {
+	
 	private int billValue;
 	private int billAmount;
 	
@@ -33,6 +34,20 @@ public class BillEntry {
 	
 	public String toString() {
 		return "value: " + billValue + " -> amount: " + billAmount + " ";
+	}
+	
+	public String billValueAsString() {
+		if(billValue == 1)
+			return "ONE_RON(1)";
+		else if(billValue == 5)
+			return "FIVE_RON(5)";
+		else if(billValue == 10)
+			return "TEN_RON(10)";
+		else if(billValue == 50)
+			return "FIFTY_RON(50)";
+		else if(billValue == 100)
+			return "ONEHUNDRED_RON(100)";
+		return "";
 	}
 	
 	@Override

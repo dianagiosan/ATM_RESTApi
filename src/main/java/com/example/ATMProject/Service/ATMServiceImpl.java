@@ -7,7 +7,7 @@ import com.example.ATMProject.ATMUtils.TransactionNotPossibleException;
 import com.example.ATMProject.DTO.ATMOutput;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,13 +42,14 @@ public class ATMServiceImpl implements ATMService {
 		return availableBills;
 	}
 	
-	public void ATMRefill(int billValue, int billAmount){
-		for(BillEntry b : availableBills) {
+	public void ATMRefill(int billValue, int billAmount) {
+		for (BillEntry b : availableBills) {
 			if (b.getBillValue() == billValue)
 				b.setBillAmount(b.getBillAmount() + billAmount);
 		}
 		
 	}
+	
 	/**
 	 * method that splits the desired sum of money into corresponding bills
 	 *

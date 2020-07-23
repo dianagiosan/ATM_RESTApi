@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class BalanceCheckController {
 	@Autowired
 	ATMService ATM;
+	
 	@GetMapping("/api/check-balance")
-	public String checkBalance(){
+	public String checkBalance() {
 		return ATM.getAvailableBills().toString();
 	}
 }

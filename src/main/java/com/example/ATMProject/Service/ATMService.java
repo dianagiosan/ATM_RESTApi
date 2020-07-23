@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface ATMService {
 	void ATMRefill(int billValue, int billAmount);
+	
 	ATMOutput splitIntoBills(int cashToWithdraw);
 	
 	List<BillEntry> getAvailableBills();

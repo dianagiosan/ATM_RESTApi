@@ -1,8 +1,8 @@
 package com.example.ATMProject.Controllers;
 
+import com.example.ATMProject.DTO.ATMOutput;
 import com.example.ATMProject.FeignClient.ATMClient;
 import com.example.ATMProject.Service.ATMService;
-import com.example.ATMProject.DTO.ATMOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

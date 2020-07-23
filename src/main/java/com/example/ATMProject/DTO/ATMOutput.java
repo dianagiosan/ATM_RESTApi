@@ -2,8 +2,10 @@ package com.example.ATMProject.DTO;
 
 import com.example.ATMProject.ATMUtils.BillEntry;
 
-import java.util.*;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 
 /**
  * class that models the output the ATM provides the user with,
@@ -15,17 +17,19 @@ public class ATMOutput {
 	Map<String, Integer> bills = new TreeMap<>();
 	
 	String message;
-	public ATMOutput(){
+	
+	public ATMOutput() {
 	
 	}
+	
 	public ATMOutput(List<BillEntry> bills, String message) {
-		for(BillEntry entry : bills) {
+		for (BillEntry entry : bills) {
 			this.bills.put(entry.billValueAsString(), entry.getBillAmount());
 		}
 		this.message = message;
 	}
 	
-	public Map <String, Integer> getBills() {
+	public Map<String, Integer> getBills() {
 		return bills;
 	}
 	

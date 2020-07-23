@@ -9,15 +9,19 @@ import java.util.List;
  */
 
 public class ATMOutput {
-	java.util.List<BillEntry> bills;
+	
+	Map<String, Integer> bills = new TreeMap<>();
+	
 	String message;
 	
-	public ATMOutput(java.util.List<BillEntry> bills, String message) {
-		this.bills = bills;
+	public ATMOutput(List<BillEntry> bills, String message) {
+		for(BillEntry entry : bills) {
+			this.bills.put(entry.billValueAsString(), entry.getBillAmount());
+		}
 		this.message = message;
 	}
 	
-	public List<BillEntry> getBills() {
+	public Map <String, Integer> getBills() {
 		return bills;
 	}
 	

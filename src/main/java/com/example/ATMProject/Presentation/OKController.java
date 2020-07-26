@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class OKController {
-	@GetMapping("/api/OK")
+	@GetMapping("/OK")
 	public ResponseEntity<String> OKResponse() {
 		return new ResponseEntity<>("I'm up and running.", HttpStatus.OK);
 	}

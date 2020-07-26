@@ -21,7 +21,7 @@ public class WithdrawalController {
 	@Autowired
 	AdelinaClient myAdelinaClient;
 	
-	@GetMapping("/api/new-transaction")
+	@GetMapping("/new-transaction")
 	public ResponseEntity<ATMdto> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) {
 		/* Attempt to withdraw cash from this ATM */
 		ATMdto attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);

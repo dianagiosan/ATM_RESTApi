@@ -10,7 +10,7 @@ public class BalanceCheckController {
 	@Autowired
 	ATMService ATM;
 	
-	@GetMapping("/api/check-balance")
+	@GetMapping("/check-balance")
 	public String checkBalance() {
 		return ATM.getAvailableBills().toString();
 	}

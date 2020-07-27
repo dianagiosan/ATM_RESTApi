@@ -1,4 +1,4 @@
-package com.example.ATMProject.Presentation;
+package com.example.ATMProject.Controllers;
 
 import com.example.ATMProject.Application.Service.ATMService;
 import org.springframework.beans.factory.annotation.Autowired;

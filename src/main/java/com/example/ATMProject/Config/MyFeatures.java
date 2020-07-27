@@ -1,4 +1,4 @@
-package com.example.ATMProject.Infrastructure.Config;
+package com.example.ATMProject.Config;
 
 import org.togglz.core.Feature;
 import org.togglz.core.annotation.EnabledByDefault;

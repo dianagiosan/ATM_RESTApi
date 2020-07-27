@@ -1,10 +1,10 @@
-package com.example.ATMProject.Presentation;
+package com.example.ATMProject.Controllers;
 
 import com.example.ATMProject.FeignClient.AdelinaClient;
 import com.example.ATMProject.FeignClient.DragosClient;
 import com.example.ATMProject.Application.DTO.ATMdto;
 import com.example.ATMProject.Application.Service.ATMService;
-import com.example.ATMProject.Infrastructure.Config.MyFeatures;
+import com.example.ATMProject.Config.MyFeatures;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

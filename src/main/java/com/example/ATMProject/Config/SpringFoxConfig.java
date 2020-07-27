@@ -1,4 +1,4 @@
-package com.example.ATMProject.Infrastructure.Config;
+package com.example.ATMProject.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

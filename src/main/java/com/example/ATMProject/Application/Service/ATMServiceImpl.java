@@ -1,11 +1,10 @@
 package com.example.ATMProject.Application.Service;
 
 import com.example.ATMProject.Application.DTO.ATMdto;
-import com.example.ATMProject.Application.Service.ATMService;
 import com.example.ATMProject.Domain.BillEntry;
 import com.example.ATMProject.Domain.MockMail;
-import com.example.ATMProject.Infrastructure.ATMExceptions.NotEnoughCashLeftException;
-import com.example.ATMProject.Infrastructure.ATMExceptions.TransactionNotPossibleException;
+import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -16,4 +16,6 @@ public interface ATMService {
 	ATMdto splitIntoBills(int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException;
 	
 	List<BillEntry> getAvailableBills();
+	
+	MailServiceImpl getMailService();
 }

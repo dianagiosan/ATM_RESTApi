@@ -2,7 +2,6 @@ package com.example.ATMProject.Application.Service;
 
 import com.example.ATMProject.Application.DTO.ATMdto;
 import com.example.ATMProject.Domain.BillEntry;
-import com.example.ATMProject.Domain.MockMail;
 import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
 import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,11 @@ public class ATMServiceImpl implements ATMService {
 	 */
 	private List<BillEntry> availableBills = new ArrayList<>();
 	
+	private MailServiceImpl mailService = new MailServiceImpl();
+	
+	public MailServiceImpl getMailService(){
+		return mailService;
+	}
 	/**
 	 * initialize the available bills every time an ATM object is created
 	 */
@@ -145,15 +149,15 @@ public class ATMServiceImpl implements ATMService {
 			availableBills.addAll(availableBillsCopy);
 			//check to see if we have to send a warning mail
 			if (availableBills.get(0).getBillAmount() < 5 && !critical100MessageSent) {
-				MockMail.send("Number of 100 bills is CRITICAL.");
+				mailService.send("Number of 100 bills is CRITICAL.");
 				critical100MessageSent = true;
 			} else if (availableBills.get(0).getBillAmount() < 10 && !warning100MessageSent) {
-				MockMail.send("Warning. Number of 100 bills under 20%.");
+				mailService.send("Warning. Number of 100 bills under 20%.");
 				warning100MessageSent = true;
 			}
 			if (availableBills.get(1).getBillAmount() <= 7 && !warning50MessageSent) {
 				
-				MockMail.send("Warning. Number of 50 bills is under 15%.");
+				mailService.send("Warning. Number of 50 bills is under 15%.");
 				warning50MessageSent = true;
 			}
 		}

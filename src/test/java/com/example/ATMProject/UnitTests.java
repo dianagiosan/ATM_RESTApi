@@ -1,12 +1,27 @@
 package com.example.ATMProject;
 
 import com.example.ATMProject.Application.DTO.ATMdto;
+import com.example.ATMProject.Application.Service.ATMService;
 import com.example.ATMProject.Application.Service.ATMServiceImpl;
+import com.example.ATMProject.Config.MyFeatures;
+import com.example.ATMProject.Controllers.WithdrawalController;
 import com.example.ATMProject.Domain.BillEntry;
+import com.example.ATMProject.FeignClient.AdelinaClient;
 import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
 import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
+import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.togglz.junit.TogglzRule;
 
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +29,14 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class UnitTests {
-	
-	
+	@InjectMocks
+	WithdrawalController withdrawalController;
+	@Mock
+	AdelinaClient MockAdelinaClient;
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
+	@Rule
+	public TogglzRule togglzRule = TogglzRule.allDisabled(MyFeatures.class);
 	@Test
 	public void getAvailableBills() {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
@@ -194,6 +215,19 @@ public class UnitTests {
 		
 		
 		
+	}
+	@Test
+	public void withdrawFromAdelina() throws NotEnoughCashLeftException, TransactionNotPossibleException {
+		
+		ATMService ATM = new ATMServiceImpl();
+		togglzRule.enable(MyFeatures.WITHDRAW_ADELINA);
+		ResponseEntity<ATMdto> actual = withdrawalController.transaction(5000);
+		ResponseEntity<ATMdto> expected = new ResponseEntity<>(ATM.splitIntoBills(5000), HttpStatus.OK);
+		Assert.assertEquals(actual, expected);
+		actual = withdrawalController.transaction(1000);
+		ATMService ATM2 = new ATMServiceImpl();
+		expected = new ResponseEntity<>(ATM2.splitIntoBills(5000), HttpStatus.OK);
+		Assert.assertEquals(expected, actual);
 	}
 	
 }

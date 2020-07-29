@@ -10,24 +10,24 @@ import java.util.TreeMap;
 
 /**
  * class that models the output the ATM provides the user with,
- * consisting of the bills and their respective amount, as well as a specific success/error message
+ * consisting of the bills and their respective amount, as well as a specific success/error responseMessage
  */
 @Component
 public class ATMdto {
 	
 	Map<String, Integer> bills = new TreeMap<>();
 	
-	String message;
+	String responseMessage;
 	
 	public ATMdto() {
 	
 	}
 	
-	public ATMdto(List<BillEntry> bills, String message) {
+	public ATMdto(List<BillEntry> bills, String responseMessage) {
 		for (BillEntry entry : bills) {
 			this.bills.put(entry.billValueAsString(), entry.getBillAmount());
 		}
-		this.message = message;
+		this.responseMessage = responseMessage;
 	}
 	
 	public Map<String, Integer> getBills() {
@@ -35,7 +35,7 @@ public class ATMdto {
 	}
 	
 	public String getMessage() {
-		return message;
+		return responseMessage;
 	}
 	
 	@Override
@@ -44,15 +44,15 @@ public class ATMdto {
 		if (o == null || getClass() != o.getClass()) return false;
 		ATMdto ATMdto = (ATMdto) o;
 		return bills.equals(ATMdto.bills) &&
-			message.equals(ATMdto.message);
+			responseMessage.equals(ATMdto.responseMessage);
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(bills, message);
+		return Objects.hash(bills, responseMessage);
 	}
 	
 	public String toString() {
-		return message + ". Here is your money: " + bills;
+		return responseMessage + ". Here is your money: " + bills;
 	}
 }

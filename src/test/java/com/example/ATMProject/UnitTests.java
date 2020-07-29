@@ -3,6 +3,8 @@ package com.example.ATMProject;
 import com.example.ATMProject.Application.DTO.ATMdto;
 import com.example.ATMProject.Application.Service.ATMServiceImpl;
 import com.example.ATMProject.Domain.BillEntry;
+import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_151() {
+	public void splitIntoBills_151() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(100, 1));
@@ -40,7 +42,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_103() {
+	public void splitIntoBills_103() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		ATMdto actual = ATMServiceImplTest.splitIntoBills(103);
@@ -52,7 +54,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_50() {
+	public void splitIntoBills_50() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
@@ -64,7 +66,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_7510() {
+	public void splitIntoBills_7510() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(100, 50));
@@ -77,7 +79,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_60() {
+	public void splitIntoBills_60() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(50, 1));
@@ -89,7 +91,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_4() {
+	public void splitIntoBills_4() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(1, 4));
@@ -100,7 +102,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBills_99() {
+	public void splitIntoBills_99() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(50, 1));
@@ -114,7 +116,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBillsOverflow() {
+	public void splitIntoBillsOverflow() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(0, 0));
@@ -126,7 +128,7 @@ public class UnitTests {
 	}
 	
 	@Test
-	public void splitIntoBillsRepeatedlyTest1() {
+	public void splitIntoBillsRepeatedlyTest1() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(100, 50));
@@ -143,7 +145,7 @@ public class UnitTests {
 		
 	}
 	@Test
-	public void splitIntoBillsRepeatedlyTest2() {
+	public void splitIntoBillsRepeatedlyTest2() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List<BillEntry> expectedBills = new ArrayList<>();
 		expectedBills.add(new BillEntry(100, 50));
@@ -160,7 +162,7 @@ public class UnitTests {
 		
 	}
 	@Test
-	public void splitIntoBillsRepeatedlyTest3() {
+	public void splitIntoBillsRepeatedlyTest3() throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		ATMServiceImpl ATMServiceImplTest = new ATMServiceImpl();
 		List <BillEntry> newATMServiceImplConfiguration = new ArrayList<>();
 		newATMServiceImplConfiguration.add(new BillEntry(100, 1));

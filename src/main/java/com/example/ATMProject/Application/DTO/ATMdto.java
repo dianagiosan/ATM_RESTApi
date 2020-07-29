@@ -1,6 +1,7 @@
 package com.example.ATMProject.Application.DTO;
 
 import com.example.ATMProject.Domain.BillEntry;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.TreeMap;
  * class that models the output the ATM provides the user with,
  * consisting of the bills and their respective amount, as well as a specific success/error message
  */
-
+@Component
 public class ATMdto {
 	
 	Map<String, Integer> bills = new TreeMap<>();

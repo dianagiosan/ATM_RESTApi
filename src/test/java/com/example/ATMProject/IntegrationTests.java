@@ -34,4 +34,8 @@ public class IntegrationTests {
 		Assert.assertEquals(output.getBills(), expected);
 		Assert.assertEquals(output.getMessage(), "Transaction approved");
 	}
+	@Test
+	public void withdrawsFromAdelina() {
+		
+	}
 }

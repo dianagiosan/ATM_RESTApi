@@ -9,9 +9,9 @@ public class ATMRefillController {
 	@Autowired
 	ATMService ATM;
 	
-	@RequestMapping(value = "/ATM-Refill", method = RequestMethod.PUT)
+	@RequestMapping(value = "/ATM-Refill", method = RequestMethod.POST)
 	public @ResponseBody
-	void ATMRefill(@RequestParam(name = "para1") int billValue, @RequestParam(name = "para2") int billAmount) {
+	void ATMRefill(@RequestParam(name = "Value") int billValue, @RequestParam(name = "Amount") int billAmount) {
 		ATM.ATMRefill(billValue, billAmount);
 	}
 }

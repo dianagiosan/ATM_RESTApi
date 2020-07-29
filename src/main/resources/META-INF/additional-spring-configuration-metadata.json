@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "adelina.atm",
+      "type": "java.lang.String",
+      "description": "Description for adelina.atm."
+    },
+    {
+      "name": "dragos.atm",
+      "type": "java.lang.String",
+      "description": "Description for dragos.atm."
+    }
+  ] }

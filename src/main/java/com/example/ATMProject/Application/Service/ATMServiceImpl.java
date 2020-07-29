@@ -52,6 +52,7 @@ public class ATMServiceImpl implements ATMService {
 	
 	/**
 	 * For testing purposes only
+	 *
 	 * @param newConfiguration - a list of the desired bill configuration
 	 */
 	public void changeInitialATMConfiguration(List<BillEntry> newConfiguration) {
@@ -66,7 +67,7 @@ public class ATMServiceImpl implements ATMService {
 	 * @param cashToWithdraw - the sum that the user desires to withdraw
 	 * @return ATMOutput object : list of billEntries and success/error message
 	 */
-	public ATMdto splitIntoBills(int cashToWithdraw) {
+	public ATMdto splitIntoBills(int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException {
 		/*
 		  sort the list of available bills descendingly by their value
 		 */
@@ -93,16 +94,10 @@ public class ATMServiceImpl implements ATMService {
 			}
 		}
 		if (!OKtoContinue)
-			try {
-				/* throw exception, there's no more cash in the ATM */
-				
-				throw new NotEnoughCashLeftException();
-			} catch (NotEnoughCashLeftException e) {
-				System.out.println(e.getMessage());
-				message = "Transaction denied";
-				returnBills.add(new BillEntry(0, 0)); /* no money outputted */
-				return new ATMdto(returnBills, message);
-			}
+			/* throw exception, there's no more cash in the ATM */
+			
+			throw new NotEnoughCashLeftException();
+		
 		List<BillEntry> availableBillsCopy = new ArrayList<>(); /* create a working copy of the ATM bills */
 		for (BillEntry entry : availableBills) {
 			BillEntry entryCopy = new BillEntry(entry.getBillValue(), entry.getBillAmount());
@@ -135,22 +130,17 @@ public class ATMServiceImpl implements ATMService {
 		 * bill configuration in the ATM doesn't allow it
 		 */
 		if (cashToWithdraw > 0) {
-			message = "Transaction denied";
 			returnBills.clear();
 			/* no money outputted */
 			returnBills.add(new BillEntry(0, 0));
-			try {
-				/* throw exception */
-				throw new TransactionNotPossibleException();
-			} catch (TransactionNotPossibleException e) {
-				System.out.println(e.getMessage());
-			}
+			/* throw exception */
+			throw new TransactionNotPossibleException();
 		} else {
 			/*
 			 * if the transaction was successful, update the new bill configuration
 			 * in the ATM and send success message
 			 */
-			message = "Transaction approved";
+			message = "Transaction approved - money from Diana";
 			availableBills.clear();
 			availableBills.addAll(availableBillsCopy);
 			//check to see if we have to send a warning mail

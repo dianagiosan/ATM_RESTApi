@@ -38,6 +38,14 @@ public class ATMdto {
 		return responseMessage;
 	}
 	
+	public void setResponseMessage(String responseMessage) {
+		this.responseMessage = responseMessage;
+	}
+	
+	public void setBills(Map<String, Integer> bills) {
+		this.bills = bills;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

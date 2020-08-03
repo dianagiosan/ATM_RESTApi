@@ -72,8 +72,10 @@ public class HoverflyUnitTests {
 		Map<String, Integer> expected = new TreeMap<>();
 		expected.put("ONEHUNDRED_RON(100)", 1);
 		expected.put("ONE_RON(1)", 1);
+		System.out.println(output);
 		Assert.assertEquals(output.getBills(), expected);
-		Assert.assertEquals("Transaction approved", output.getMessage());
+		Assert.assertEquals("Transaction approved - money from Diana", output.getMessage());
+		
 	}
 	
 	@Test
@@ -83,11 +85,11 @@ public class HoverflyUnitTests {
 		expected.put("ONEHUNDRED_RON(100)", 1);
 		expected.put("ONE_RON(1)", 1);
 		Assert.assertEquals(expected, output.getBills());
-		Assert.assertEquals("Transaction approved", output.getMessage());
+		Assert.assertEquals("Transaction approved - money from Diana", output.getMessage());
 		output = get("http://localhost:8080/api/new-transaction?sum=1000").as(ATMdto.class);
 		expected.clear();
 		expected.put("ONEHUNDRED_RON(100)", 10);
 		Assert.assertEquals(expected, output.getBills());
-		Assert.assertEquals("Transaction approved", output.getMessage());
+		Assert.assertEquals("Transaction approved - money from Diana", output.getMessage());
 	}
 }

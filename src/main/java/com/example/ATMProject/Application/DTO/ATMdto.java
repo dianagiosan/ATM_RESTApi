@@ -1,7 +1,7 @@
 package com.example.ATMProject.Application.DTO;
 
 import com.example.ATMProject.Domain.BillEntry;
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +12,6 @@ import java.util.TreeMap;
  * class that models the output the ATM provides the user with,
  * consisting of the bills and their respective amount, as well as a specific success/error responseMessage
  */
-@Component
 public class ATMdto {
 	
 	Map<String, Integer> bills = new TreeMap<>();
@@ -20,7 +19,7 @@ public class ATMdto {
 	String responseMessage;
 	
 	public ATMdto() {
-	
+		super();
 	}
 	
 	public ATMdto(List<BillEntry> bills, String responseMessage) {
@@ -33,15 +32,13 @@ public class ATMdto {
 	public Map<String, Integer> getBills() {
 		return bills;
 	}
-	
+	@JsonProperty("responseMessage")
 	public String getMessage() {
 		return responseMessage;
 	}
-	
 	public void setResponseMessage(String responseMessage) {
 		this.responseMessage = responseMessage;
 	}
-	
 	public void setBills(Map<String, Integer> bills) {
 		this.bills = bills;
 	}

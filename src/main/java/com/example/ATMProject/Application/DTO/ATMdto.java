@@ -28,6 +28,46 @@ public class ATMdto {
 		}
 		this.responseMessage = responseMessage;
 	}
+	public Integer get1BillsAmount() {
+		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
+			if(entry.getKey().equals("ONE_RON(1)"))
+				return entry.getValue();
+			
+		}
+		return 0;
+	}
+	public Integer get5BillsAmount() {
+		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
+			if(entry.getKey().equals("FIVE_RON(5)"))
+				return entry.getValue();
+			
+		}
+		return 0;
+	}
+	public Integer get10BillsAmount() {
+		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
+			if(entry.getKey().equals("TEN_RON(10)"))
+				return entry.getValue();
+			
+		}
+		return 0;
+	}
+	public Integer get50BillsAmount() {
+		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
+			if(entry.getKey().equals("FIFTY_RON(50)"))
+				return entry.getValue();
+			
+		}
+		return 0;
+	}
+	public Integer get100BillsAmount() {
+		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
+			if(entry.getKey().equals("ONEHUNDRED_RON(100)"))
+				return entry.getValue();
+			
+		}
+		return 0;
+	}
 	
 	public Map<String, Integer> getBills() {
 		return bills;

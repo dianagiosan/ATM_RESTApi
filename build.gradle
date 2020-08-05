@@ -10,6 +10,9 @@ sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+	maven{url "http://jasperreports.sourceforge.net/maven2/"}
+	maven{url "http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/"
+	}
 }
 
 ext {
@@ -34,11 +37,15 @@ dependencies {
 	compile "org.togglz:togglz-spring-security:2.5.0.Final"
 	testCompile "io.specto:hoverfly-java:0.5.0"
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	dependencies {
 		compile "org.springframework.boot:spring-boot-configuration-processor"
 	}
 	repositories { jcenter() }
 	dependencies { testImplementation 'org.mockito:mockito-core:2.7.22' }
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard'
+	compile 'net.sf.jasperreports:jasperreports:6.0.3'
 }
 task copyConfigurationMetadata(type: Copy) {
 	from(compileJava) {

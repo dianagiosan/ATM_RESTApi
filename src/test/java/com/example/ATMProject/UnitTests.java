@@ -7,8 +7,8 @@ import com.example.ATMProject.Config.MyFeatures;
 import com.example.ATMProject.Controllers.WithdrawalController;
 import com.example.ATMProject.Domain.BillEntry;
 import com.example.ATMProject.FeignClient.AdelinaClient;
-import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
-import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
+import com.example.ATMProject.Infrastructure.Exceptions.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.Exceptions.TransactionNotPossibleException;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,12 +16,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.togglz.junit.TogglzRule;
 
-import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 

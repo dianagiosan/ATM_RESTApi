@@ -5,10 +5,12 @@ import com.example.ATMProject.Application.Service.ATMService;
 import com.example.ATMProject.Config.MyFeatures;
 import com.example.ATMProject.FeignClient.AdelinaClient;
 import com.example.ATMProject.FeignClient.DragosClient;
-import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
-import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
+import com.example.ATMProject.Infrastructure.Exceptions.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.Exceptions.TransactionNotPossibleException;
+import com.example.ATMProject.ReportEntry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
-import static org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.json;
 
 @RestController
 public class WithdrawalController {
@@ -28,14 +29,17 @@ public class WithdrawalController {
 	DragosClient myDragosClient;
 	@Autowired
 	AdelinaClient myAdelinaClient;
+	@Autowired
+	TransactionList transactionList;
 	@HystrixCommand(fallbackMethod = "defaultMessage")
 	@GetMapping("/new-transaction")
-	public ResponseEntity<ATMdto> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException {
+	public ResponseEntity<ATMdto> transaction(@RequestParam(value = "sum", defaultValue = "0") int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException, JRException {
 		/* Attempt to withdraw cash from this ATM */
 		try {
 			ATMdto attemptOutput = ATMinstance.splitIntoBills(cashToWithdraw);
-			ObjectMapper o = new ObjectMapper();
-			System.out.println(o.writeValueAsString(attemptOutput));
+			transactionList.add(new Transaction(LocalDateTime.now(), new ReportEntry(attemptOutput.get1BillsAmount(),
+				attemptOutput.get5BillsAmount(), attemptOutput.get10BillsAmount(),
+				attemptOutput.get50BillsAmount(), attemptOutput.get100BillsAmount())));
 			return new ResponseEntity<>(attemptOutput, HttpStatus.OK);
 		}
 		/* If not possible, try to withdraw from the other available ATM */

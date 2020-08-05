@@ -2,8 +2,9 @@ package com.example.ATMProject.Application.Service;
 
 import com.example.ATMProject.Application.DTO.ATMdto;
 import com.example.ATMProject.Domain.BillEntry;
-import com.example.ATMProject.Infrastructure.NotEnoughCashLeftException;
-import com.example.ATMProject.Infrastructure.TransactionNotPossibleException;
+import com.example.ATMProject.Infrastructure.Exceptions.NotEnoughCashLeftException;
+import com.example.ATMProject.Infrastructure.Exceptions.TransactionNotPossibleException;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class ATMServiceImpl implements ATMService {
 	 * @param cashToWithdraw - the sum that the user desires to withdraw
 	 * @return ATMOutput object : list of billEntries and success/error message
 	 */
-	public ATMdto splitIntoBills(int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException {
+	public ATMdto splitIntoBills(int cashToWithdraw) throws NotEnoughCashLeftException, TransactionNotPossibleException, JRException {
 		/*
 		  sort the list of available bills descendingly by their value
 		 */

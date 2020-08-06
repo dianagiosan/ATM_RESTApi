@@ -1,5 +1,6 @@
-package com.example.ATMProject.Controllers;
+package com.example.ATMProject.Application.Service;
 
+import com.example.ATMProject.Domain.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

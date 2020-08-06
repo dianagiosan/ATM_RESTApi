@@ -2,13 +2,14 @@ package com.example.ATMProject.Controllers;
 
 import com.example.ATMProject.Application.DTO.ATMdto;
 import com.example.ATMProject.Application.Service.ATMService;
+import com.example.ATMProject.Application.Service.TransactionList;
 import com.example.ATMProject.Config.MyFeatures;
+import com.example.ATMProject.Domain.Transaction;
 import com.example.ATMProject.FeignClient.AdelinaClient;
 import com.example.ATMProject.FeignClient.DragosClient;
 import com.example.ATMProject.Infrastructure.Exceptions.NotEnoughCashLeftException;
 import com.example.ATMProject.Infrastructure.Exceptions.TransactionNotPossibleException;
 import com.example.ATMProject.ReportEntry;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;

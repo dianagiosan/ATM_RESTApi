@@ -1,15 +1,18 @@
 package com.example.ATMProject.Controllers;
 
+import com.example.ATMProject.Application.Service.TransactionList;
+import com.example.ATMProject.Domain.Transaction;
 import com.example.ATMProject.ReportEntry;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,7 +27,7 @@ public class TransactionReportController {
 	@Autowired
 	TransactionList transactionList;
 	@GetMapping("/transaction-report")
-	public void transactionReport(@RequestParam(value = "minutes", defaultValue = "0") int minutes, HttpServletResponse response) throws JRException, IOException {
+	public ResponseEntity<String> transactionReport(@RequestParam(value = "minutes", defaultValue = "0") int minutes, HttpServletResponse response) throws JRException, IOException {
 		ArrayList<ReportEntry> list = new ArrayList<>();
 		list.add(new ReportEntry(1, 2, 3, 4, 5));
 		for(Transaction t : transactionList.getTransactions()) {
@@ -41,4 +44,5 @@ public class TransactionReportController {
 		response.setContentType("application/x-pdf");
 		response.addHeader("Content-disposition", "attachment; filename = index.pdf");
 		JasperExportManager.exportReportToPdfStream(print, response.getOutputStream());
-}}
+		return new ResponseEntity<>("PDF downloaded successfully!", HttpStatus.OK);
+	}}

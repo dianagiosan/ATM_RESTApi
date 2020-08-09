@@ -1,4 +1,4 @@
-package com.example.ATMProject;
+package com.example.ATMProject.Infrastructure;
 
 import io.swagger.models.auth.In;
 

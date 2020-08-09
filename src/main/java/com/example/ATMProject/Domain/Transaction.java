@@ -1,6 +1,6 @@
 package com.example.ATMProject.Domain;
 
-import com.example.ATMProject.ReportEntry;
+import com.example.ATMProject.Infrastructure.ReportEntry;
 
 import java.time.LocalDateTime;
 

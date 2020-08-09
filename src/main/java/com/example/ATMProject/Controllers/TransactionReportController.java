@@ -2,7 +2,7 @@ package com.example.ATMProject.Controllers;
 
 import com.example.ATMProject.Application.Service.TransactionList;
 import com.example.ATMProject.Domain.Transaction;
-import com.example.ATMProject.ReportEntry;
+import com.example.ATMProject.Infrastructure.ReportEntry;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;

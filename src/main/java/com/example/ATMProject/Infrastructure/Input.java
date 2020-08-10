@@ -1,6 +1,7 @@
 package com.example.ATMProject.Infrastructure;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -22,10 +23,12 @@ public class Input implements Serializable {
 	}
 	
 	public String newPath() {
-		Pattern p = Pattern.compile("-?\\d+");
-		if (path.matches("(.*)transaction(.*)"))
-			if (p.matcher(path).find())
-				return "/api/new-transaction?sum=" + p.matcher(path).group(0);
-		return "/api";
+		if (path.matches("(.*)transact(.*)"))
+				return "/api/new-transaction?sum=" + path.replaceAll("\\D+","");
+		else if(path.matches("(.*)balance(.*)") || path.matches("(.*)how much(.*)"))
+			return "/api/check-balance";
+		else if(path.matches("(.*)report(.*)"))
+			return "/api/report";
+		else return "/api/FormInputError";
 	}
 }

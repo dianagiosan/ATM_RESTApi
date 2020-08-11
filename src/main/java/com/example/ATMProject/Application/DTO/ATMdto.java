@@ -50,6 +50,7 @@ public class ATMdto {
 				return entry.getValue();
 			
 		}
+		
 		return 0;
 	}
 	public Integer get50BillsAmount() {

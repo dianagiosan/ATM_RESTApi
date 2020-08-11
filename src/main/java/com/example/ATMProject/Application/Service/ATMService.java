@@ -18,5 +18,7 @@ public interface ATMService {
 	
 	List<BillEntry> getAvailableBills();
 	
+	
+	
 	MailServiceImpl getMailService();
 }

@@ -15,6 +15,8 @@ public class TransactionList {
 		return transactions;
 	}
 	
+	
+	
 	public void setTransactions(ArrayList<Transaction> transactions) {
 		this.transactions = transactions;
 	}

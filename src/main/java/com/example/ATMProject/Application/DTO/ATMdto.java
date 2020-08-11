@@ -47,6 +47,8 @@ public class ATMdto {
 	public Integer get10BillsAmount() {
 		for(Map.Entry<String, Integer> entry : bills.entrySet()) {
 			if(entry.getKey().equals("TEN_RON(10)"))
+				
+				
 				return entry.getValue();
 			
 		}
